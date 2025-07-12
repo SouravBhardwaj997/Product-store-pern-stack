@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.0"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
