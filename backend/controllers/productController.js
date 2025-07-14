@@ -17,7 +17,7 @@ const createProduct = async (req, res) => {
     }
     const product = await sql`
     INSERT INTO PRODUCTS(NAME, PRICE, IMAGE)
-    VALUES(${name},${price},${image})
+    VALUES(${name},${price},${image}) RETURNING *
     `;
     return res.status(201).json({
       message: "Product created successfully",
@@ -36,7 +36,7 @@ const getAllProducts = async (_, res) => {
     `;
     return res.status(200).json({
       products,
-      message: "List of all products",
+      success: true,
     });
   } catch (error) {
     console.log("Error while fetching the products", error);
