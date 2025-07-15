@@ -6,12 +6,46 @@ import morgan from "morgan";
 import sql from "./config/db.js";
 
 import productsRoute from "./routes/productRoute.js";
+import { aj } from "./lib/arcjet.js";
 
 dotenv.config();
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+
 //middlewares
+app.use(async (req, res, next) => {
+  try {
+    const decision = await aj.protect(req, { requested: 1 });
+    console.log("decicion", decision);
+    if (decision.isDenied()) {
+      if (decision.reason.isRateLimit) {
+        return res
+          .status(429)
+          .json({ success: false, message: "Rate Limit Exceeded" });
+      } else if (decision.reason.isBot) {
+        return res
+          .status(403)
+          .json({ success: false, message: "No Bot Allowed" });
+      } else {
+        return res.status(403).json({ success: false, message: "Forbidden" });
+      }
+    }
+    if (
+      decision.results.some(
+        (result) => result.reason.isBot() && result.reason.isSpoofed()
+      )
+    ) {
+      return res
+        .status(403)
+        .json({ success: false, message: "Spoofed bot found" });
+    }
+    next();
+  } catch (error) {
+    console.log("error in arcjet configuration", error);
+  }
+});
+
 app.use(express.json());
 app.use(cors());
 app.use(helmet()); // secure our app by providing various headers
