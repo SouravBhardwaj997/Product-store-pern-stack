@@ -32,10 +32,34 @@ const createProduct = async (req, res) => {
 const getAllProducts = async (_, res) => {
   try {
     const products = await sql`
-    SELECT * FROM PRODUCTS
+    SELECT * FROM PRODUCTS ORDER BY createAt DESC
     `;
     return res.status(200).json({
       products,
+      success: true,
+    });
+  } catch (error) {
+    console.log("Error while fetching the products", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
+  }
+};
+const getProduct = async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log("id", id);
+    const product = await sql`
+    SELECT * FROM PRODUCTS WHERE id=${id}
+    `;
+    if (product.length == 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+    return res.status(200).json({
+      product,
       success: true,
     });
   } catch (error) {
@@ -87,4 +111,10 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-export { createProduct, getAllProducts, updateProduct, deleteProduct };
+export {
+  createProduct,
+  getAllProducts,
+  updateProduct,
+  deleteProduct,
+  getProduct,
+};
