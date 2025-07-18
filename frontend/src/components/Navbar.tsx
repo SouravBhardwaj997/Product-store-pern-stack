@@ -1,7 +1,9 @@
 import { ShoppingBag, ShoppingCart } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
+import { useProductStore } from "../store/useProductStore";
 
 const Navbar = () => {
+  const { products } = useProductStore();
   return (
     <div className="bg-base-100/80 backdrop-blur-2xl sticky top-0 z-50 text-base-content border-b border-secondary py-4">
       <div className="max-w-6xl mx-auto flex justify-between">
@@ -18,7 +20,7 @@ const Navbar = () => {
           <ThemeSelector />
           <div className="indicator">
             <span className="indicator-item badge badge-secondary p-2 text-xs">
-              12
+              {products.length}
             </span>
             <span>
               <ShoppingBag />

@@ -10,7 +10,7 @@ const ThemeSelector = () => {
       </div>
       <ul
         tabIndex={0}
-        className="dropdown-content flex flex-col gap-1 overflow-y-scroll flex-nowrap menu bg-base-200 rounded-xl z-1 w-52 p-2 shadow-2xl border border-secondary mt-4 h-96"
+        className="dropdown-content flex flex-col gap-1 overflow-y-scroll flex-nowrap menu bg-base-200 rounded-xl z-1 p-2 shadow-2xl border border-secondary mt-4 h-96"
       >
         {THEMES.map((theme) => (
           <li className={`w-full rounded-md `} key={theme.name}>

@@ -1,6 +1,7 @@
 import { CirclePlus, RefreshCcw } from "lucide-react";
 import { useProductStore } from "../store/useProductStore";
 import { useEffect } from "react";
+import ProductCard from "../components/ProductCard";
 
 const Home = () => {
   const { products, fetchProducts } = useProductStore();
@@ -23,8 +24,15 @@ const Home = () => {
           <RefreshCcw className="size-6" />
         </button>
       </div>
-      <div className="grid grid-cols-3 gap-4">
-        <p>{products.map((el) => JSON.stringify(el.name))}</p>
+      <div className="grid grid-cols-3 gap-4 mt-10">
+        {products.map((el) => (
+          <ProductCard
+            name={el.name}
+            price={el.price}
+            key={el.name}
+            image={el.image}
+          />
+        ))}
       </div>
     </div>
   );
