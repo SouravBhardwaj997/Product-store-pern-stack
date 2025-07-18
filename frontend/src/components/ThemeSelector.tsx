@@ -2,9 +2,7 @@ import { PaletteIcon } from "lucide-react";
 import { THEMES } from "../constants";
 import { useThemeStore } from "../store/useThemeStore";
 const ThemeSelector = () => {
-  const currentTheme = "forest";
-  const { theme, changeTheme } = useThemeStore();
-  console.log(theme);
+  const { theme: currentTheme, changeTheme } = useThemeStore();
   return (
     <div className="dropdown dropdown-end cursor-pointer">
       <div tabIndex={0} role="button" className="m-1">
