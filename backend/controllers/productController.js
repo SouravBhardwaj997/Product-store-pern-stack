@@ -48,7 +48,6 @@ const getAllProducts = async (_, res) => {
 const getProduct = async (req, res) => {
   try {
     const id = req.params.id;
-    console.log("id", id);
     const product = await sql`
     SELECT * FROM PRODUCTS WHERE id=${id}
     `;

@@ -17,7 +17,6 @@ const PORT = process.env.PORT || 3000;
 app.use(async (req, res, next) => {
   try {
     const decision = await aj.protect(req, { requested: 1 });
-    console.log("decicion", decision);
     if (decision.isDenied()) {
       if (decision.reason.isRateLimit) {
         return res
