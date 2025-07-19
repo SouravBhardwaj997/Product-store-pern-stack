@@ -1,4 +1,4 @@
-import { ShoppingBag, DollarSign, Image } from "lucide-react";
+import { ShoppingBag, DollarSign, Image, type LucideIcon } from "lucide-react";
 
 export const THEMES = [
   {
@@ -68,20 +68,32 @@ export const THEMES = [
   },
 ];
 
-export const inputData = [
+export const inputData: {
+  label: string;
+  placeholder: string;
+  type: string;
+  icon: LucideIcon;
+  name: "name" | "price" | "image";
+}[] = [
   {
     label: "Product Name",
     placeholder: "Enter product name",
     icon: ShoppingBag,
+    type: "string",
+    name: "name",
   },
   {
     label: "Price",
     placeholder: "0.00",
     icon: DollarSign,
+    type: "number",
+    name: "price",
   },
   {
     label: "Image Url",
     placeholder: "http://example.com/image.png",
     icon: Image,
+    type: "string",
+    name: "image",
   },
 ];

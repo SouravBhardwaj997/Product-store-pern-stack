@@ -3,6 +3,7 @@ import { useProductStore } from "../store/useProductStore";
 import { useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 import Modal from "../components/Modal";
+import { Toaster } from "react-hot-toast";
 
 const Home = () => {
   const { products, fetchProducts, loading } = useProductStore();
@@ -11,6 +12,7 @@ const Home = () => {
   }, []);
   return (
     <div className="max-w-5xl mx-auto pt-6">
+      <Toaster />
       <div className="flex justify-between">
         <Modal />
         <button

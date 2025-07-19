@@ -46,7 +46,7 @@ app.use(async (req, res, next) => {
 });
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(helmet()); // secure our app by providing various headers
 app.use(morgan("dev")); // log the request to us
 
