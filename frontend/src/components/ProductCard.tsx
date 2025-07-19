@@ -1,14 +1,18 @@
 import { Edit, Trash } from "lucide-react";
+import { useProductStore } from "../store/useProductStore";
 
 const ProductCard = ({
   name,
   image,
   price,
+  id,
 }: {
   name: string;
   image: string;
   price: number;
+  id: number;
 }) => {
+  const { deleteProduct } = useProductStore();
   return (
     <div className="card bg-base-100 shadow-2xl">
       <figure>
@@ -24,7 +28,12 @@ const ProductCard = ({
           <button className="badge badge-outline badge-error py-4">
             <Edit className="size-5" />
           </button>
-          <button className="badge badge-outline badge-info py-4">
+          <button
+            className="badge badge-outline badge-info py-4"
+            onClick={() => {
+              deleteProduct(id);
+            }}
+          >
             <Trash className="size-5" />
           </button>
         </div>

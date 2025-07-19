@@ -1,3 +1,5 @@
+import { ShoppingBag, DollarSign, Image } from "lucide-react";
+
 export const THEMES = [
   {
     name: "pastel",
@@ -63,5 +65,23 @@ export const THEMES = [
     name: "dracula",
     label: "Dracula",
     colors: ["#282A36", "#BD93F9", "#FF79C6"],
+  },
+];
+
+export const inputData = [
+  {
+    label: "Product Name",
+    placeholder: "Enter product name",
+    icon: ShoppingBag,
+  },
+  {
+    label: "Price",
+    placeholder: "0.00",
+    icon: DollarSign,
+  },
+  {
+    label: "Image Url",
+    placeholder: "http://example.com/image.png",
+    icon: Image,
   },
 ];
