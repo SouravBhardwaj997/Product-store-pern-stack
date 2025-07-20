@@ -16,7 +16,7 @@ const ProductCard = ({
   const { deleteProduct } = useProductStore();
   const navigate = useNavigate();
   return (
-    <div className="card bg-base-100 shadow-2xl">
+    <div className="card bg-base-100 shadow-lg">
       <figure className="h-44">
         <img src={image} alt="image not found" />
       </figure>
@@ -25,7 +25,7 @@ const ProductCard = ({
         <p className="text-primary text-2xl font-bold">$ {price}</p>
         <div className="card-actions justify-end">
           <button
-            className="badge badge-outline badge-error py-4 cursor-pointer"
+            className="badge badge-outline badge-info py-4 cursor-pointer hover:bg-info hover:text-secondary-content "
             onClick={() => {
               navigate(`/product/${id}`);
             }}
@@ -33,7 +33,7 @@ const ProductCard = ({
             <Edit className="size-5" />
           </button>
           <button
-            className="badge badge-outline badge-info py-4 cursor-pointer"
+            className="badge badge-outline badge-error py-4 cursor-pointer hover:bg-error hover:text-secondary-content "
             onClick={() => {
               deleteProduct(id);
             }}

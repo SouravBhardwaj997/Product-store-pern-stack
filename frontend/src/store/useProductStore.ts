@@ -4,6 +4,13 @@ import toast from "react-hot-toast";
 import { create } from "zustand";
 
 const BASE_URL = "http://localhost:8000/api";
+interface Product {
+  name: string;
+  price: number;
+  image: string;
+  id: number;
+  createat: string;
+}
 type productStoreType = {
   products: {
     name: string;
@@ -32,6 +39,7 @@ type productStoreType = {
   deleteProduct: (id: number) => void;
   addProduct: (e: FormEvent) => void;
   fetchProduct: (id: string) => void;
+  updateProduct: (id: string) => void;
 };
 export const useProductStore = create<productStoreType>((set, get) => ({
   products: [],
@@ -68,7 +76,7 @@ export const useProductStore = create<productStoreType>((set, get) => ({
       set({ loading: false });
     }
   },
-  deleteProduct: async (id: number) => {
+  deleteProduct: async (id) => {
     try {
       set({ loading: true });
       await axios(`${BASE_URL}/products/${id}`, {
@@ -101,13 +109,47 @@ export const useProductStore = create<productStoreType>((set, get) => ({
   fetchProduct: async (id) => {
     try {
       set({ loading: true });
-      const res = await axios.get(`${BASE_URL}/products/${id}`);
+      const res = await axios.get<{ product: Product[]; success: boolean }>(
+        `${BASE_URL}/products/${id}`
+      );
       console.log(res);
       set({ currentProduct: res.data.product[0] });
+      set({
+        formData: {
+          name: res.data.product[0].name,
+          image: res.data.product[0].image,
+          price: res.data.product[0].price,
+        },
+      });
     } catch (error) {
       set({ error: true });
       toast.error("Something went wrong");
       console.log("error while fetching single product", error);
+    } finally {
+      set({ loading: false });
+    }
+  },
+  updateProduct: async (id) => {
+    try {
+      set({ loading: true });
+      const { formData } = get();
+      const res = await axios.put<{ updated: Product; success: boolean }>(
+        `${BASE_URL}/products/${id}`,
+        formData
+      );
+      set({ currentProduct: res.data.updated });
+      set({
+        formData: {
+          name: res.data.updated.name,
+          image: res.data.updated.image,
+          price: res.data.updated.price,
+        },
+      });
+      toast.success("Product updated Successfully");
+    } catch (error) {
+      set({ error: true });
+      toast.error("Something went wrong");
+      console.log("error while fetching updating product", error);
     } finally {
       set({ loading: false });
     }
