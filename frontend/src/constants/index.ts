@@ -77,7 +77,7 @@ export const inputData: {
 }[] = [
   {
     label: "Product Name",
-    placeholder: "Enter product name",
+    placeholder: "Enter product Name",
     icon: ShoppingBag,
     type: "string",
     name: "name",
