@@ -68,6 +68,7 @@ export const THEMES = [
   },
 ];
 
+//input data
 export const inputData: {
   label: string;
   placeholder: string;
