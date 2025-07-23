@@ -1,5 +1,6 @@
 import { ShoppingBag, DollarSign, Image, type LucideIcon } from "lucide-react";
 
+//THEME Data
 export const THEMES = [
   {
     name: "pastel",
