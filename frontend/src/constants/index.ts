@@ -79,21 +79,21 @@ export const inputData: {
 }[] = [
   {
     label: "Product Name",
-    placeholder: "Enter product Name",
+    placeholder: "Enter product Name 🛒",
     icon: ShoppingBag,
     type: "string",
     name: "name",
   },
   {
     label: "Price",
-    placeholder: "0.00",
+    placeholder: "$0.00",
     icon: DollarSign,
     type: "number",
     name: "price",
   },
   {
     label: "Image Url",
-    placeholder: "http://example.com/image.png",
+    placeholder: "📷 http://example.com/image.png",
     icon: Image,
     type: "string",
     name: "image",
