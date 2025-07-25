@@ -99,3 +99,4 @@ export const inputData: {
     name: "image",
   },
 ];
+//constant data
