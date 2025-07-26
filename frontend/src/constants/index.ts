@@ -92,7 +92,7 @@ export const inputData: {
     name: "price",
   },
   {
-    label: "Image Url",
+    label: "Image Link",
     placeholder: "📷 http://example.com/image.png",
     icon: Image,
     type: "string",
